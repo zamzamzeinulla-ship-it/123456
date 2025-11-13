@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ақпарат өлшемдерін түрлендіруге арналған құрал</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      color: #222;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      color: #003366;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .definition {
+      background: rgba(255,255,255,0.95);
+      border-left: 5px solid #007BFF;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #003366;
+    }
+
+    h2 {
+      color: #003366;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px 20px;
+      border-radius: 12px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input, select {
+      margin: 10px 0 20px 0;
+      padding: 10px 12px;
+      width: 100%;
+      max-width: 260px;
+      border-radius: 8px;
+      border: 1.8px solid #007BFF;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #0056b3;
+      box-shadow: 0 0 8px #0056b3aa;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      width: 100%;
+      max-width: 260px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      margin-top: -10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 15px;
+      color: #004080;
+      min-height: 1.6em;
+      white-space: pre-line;
+      text-align: center;
+      width: 100%;
+    }
+
+    ul.rules {
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #003366;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>«Ақпарат өлшемдерін түрлендіруге арналған қазақша онлайн құрал»</h1>
+  </header>
+
+  <!-- 🔹 АНЫҚТАМА -->
+  <div class="definition">
+    <strong>Анықтама:</strong><br>
+    Ақпарат өлшемдері — мәліметтің көлемін өлшеуге арналған бірліктер жүйесі.
+    Ең кіші өлшем бірлік — <b>бит</b>. Ол 0 немесе 1 мәнін қабылдайды.  
+    <b>1 байт = 8 бит</b> болады.  
+    Ақпарат көлемі өскен сайын байттар ірі бірліктерге біріктіріледі: килобайт (КБ), мегабайт (МБ), гигабайт (ГБ) және т.б.  
+    Бұл құрал ақпарат көлемдерін түрлендіруді жеңілдетеді.
+  </div>
+
+  <div class="container">
+    <!-- 1. Ақпарат өлшемін түрлендіру -->
+    <div class="section">
+      <h2>1. Ақпарат өлшемін түрлендіру</h2>
+      <input type="number" id="dataInput" placeholder="Мәнді енгізіңіз (мысалы, 1)" />
+      <select id="dataUnit">
+        <option value="bit">бит</option>
+        <option value="B">байт</option>
+        <option value="KB">КБ</option>
+        <option value="MB" selected>МБ</option>
+        <option value="GB">ГБ</option>
+      </select>
+      <button onclick="convertData()">Есептеу</button>
+      <p id="dataResult"></p>
+    </div>
+
+    <!-- 2. Ақпарат өлшемдері арасындағы ережелер -->
+    <div class="section">
+      <h2>2. Ақпарат өлшемдері арасындағы ауысу ережелері</h2>
+      <ul class="rules">
+        <li>1 байт = 8 бит</li>
+        <li>1 КБ (килобайт) = 1024 байт</li>
+        <li>1 МБ (мегабайт) = 1024 КБ</li>
+        <li>1 ГБ (гигабайт) = 1024 МБ</li>
+        <li>1 ГБ = 1 073 741 824 байт</li>
+        <li>1 байт = 0.125 бит</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // 1. Ақпарат өлшемін түрлендіру
+    function convertData() {
+      const value = parseFloat(document.getElementById("dataInput").value);
+      const unit = document.getElementById("dataUnit").value;
+      if (isNaN(value) || value < 0) {
+        document.getElementById("dataResult").innerText = "Мәнді дұрыс енгізіңіз.";
+        return;
+      }
+
+      let bytes;
+      switch (unit) {
+        case "bit": bytes = value / 8; break;
+        case "B": bytes = value; break;
+        case "KB": bytes = value * 1024; break;
+        case "MB": bytes = value * 1024 * 1024; break;
+        case "GB": bytes = value * 1024 * 1024 * 1024; break;
+      }
+
+      // Битті көрсетпейміз — тек байттан бастап
+      const result =
+        `${value} ${unit} = ${(bytes).toFixed(2)} байт\n` +
+        `${(bytes / 1024).toFixed(4)} КБ\n` +
+        `${(bytes / 1024 / 1024).toFixed(6)} МБ\n` +
+        `${(bytes / 1024 / 1024 / 1024).toFixed(8)} ГБ`;
+
+      document.getElementById("dataResult").innerText = result;
+    }
+  </script>
+
+</body>
+</html>
